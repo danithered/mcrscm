@@ -1,8 +1,8 @@
 # Transition from mineral surfaces to vesicles at the origin of life
 
 Origin of life spatio-temporal simulation of a 2D-3D transition from MCRS (surface metabolism) to SCM (cellularized metabolism). 
-Simulation made in C++, plotting in R.
-We are using ViennaRNA to map RNA sequences to secondary structures, to calculate dynamic properties. Replicators are tested in different ecological settings like associated to surfaces or in vesicules.
+The simulation is made in C++, figures generated in R.
+We are using ViennaRNA package to map RNA sequences to secondary structures, to calculate dynamic properties. Replicators are tested in different ecological settings like associated to surfaces or in vesicules.
 
 ## Citation
 
@@ -12,10 +12,10 @@ For implementation details and analyses of the results please refer to the origi
 
 ### Prequisites
 
-The simulations were compiled and run in Debian / Ubuntu environments.
+The simulations were compiled and run in Debian 12 environment.    
 In order to be able to compile the codes, the folowing softwares are needed:
 
-- [GNU Scientific Library](https://www.gnu.org/software/gsl/)
+- [GNU Scientific Library](https://www.gnu.org/software/gsl/) (we have used version 2.6 in the article)
 - [Boost](https://www.boost.org/), including serialization libraries
 - [Vienna RNA package](https://www.tbi.univie.ac.at/RNA/) (we have used version 2.6.3 in the article)
 - make, pkg-config, gcc
@@ -32,22 +32,22 @@ In order to be able to compile the codes, the folowing softwares are needed:
         cd /your/path/mcrscm
         make
         
-  This will compile three programs: `mcrs` and `scm` for the corresponding spatial simulations, and `randseq` for the generation of random sequence pool
+  This will compile three programs: `mcrs` and `scm` for the corresponding spatial simulations, and `randseq` for the generation of a random sequence pool.
 
 ## Usage
 
 - Choose a ruleset for the enzymatic activities. 
-    - The default ones, that have been used for the article, is set for deafult. If it is your choice, you do not have to do anything, jump to the next point.
+    - The default ones, that have been used for the article, are set as deafult. If it is your choice, you do not have to do anything, jump to the next point.
     - If you want to use an other set, drawn from our way of generating method, do the following:   
         1) `make gen`
-        2) run `./gen` to overwrite the original with an alternative mapping in "IN/str" or `./gen custom/path/` to put into "custom/path/"
-        3) run `src/shuffle.sh IN/str/` to shuffle the order of rules
-        4) run `src/create_mapping.sh N > IN/str/mapping_AN.txt`, where `N` stands for the number of enzymatic activities in a simulation.
-    - If you want to define rules for yourself, edit a *IN/str/mappingAN.txt* file, according to the followings: 
-        - first  line sets the number of enzymatic activities or system size $A$
-        - after the first line, there are blocks of motif definitions
-        - in each bock the first line describes a spatial pattern to look for. The spatial pattern is in a dot-bracket format. Before the spetial pattern definition there is a number defining how many alternate sequenc patterns to look for.
-        - after the spatial pattern the sequence patterns are described intwo lines definitions. The first line sets the sequences in  a format of sequences of position - base pair identity pairs. The second line renders activities to the enzymatic activties. E.g. in case of $A=3$, this line looks like " $\alpha_1$ $\alpha_2$ $\alpha_3$ ", where each $\alpha$ corresponds to the first, second an third enzymatic activities. In the original article in the motif catalysed enzymatic activity 3, we used "0 0 1".
+        2) `./gen` to overwrite the original with an alternative mapping in "IN/str" or `./gen custom/path/` to put into "custom/path/".
+        3) `src/shuffle.sh IN/str/` to shuffle the order of rules.
+        4) `src/create_mapping.sh N > IN/str/mapping_AN.txt`, where `N` stands for the number of enzymatic activities in a simulation.
+    - If you want to define rules for yourself, edit an *IN/str/mappingAN.txt* file, according to the followings: 
+        - First  line sets the number of enzymatic activities or system size $A$.
+        - After the first line, there are blocks of motif definitions.
+        - In each block the first line describes a spatial pattern to look for. The spatial pattern is in a dot-bracket format. Before the spatial pattern definition there is a number defining how many alternate sequenc patterns to look for.
+        - After the spatial pattern the sequence patterns are described in two lines definitions. The first line sets the sequences in  a format of sequences of position - base pair identity pairs. The second line renders activities to the enzymatic activties. E.g. in case of $A=3$, this line looks like " $\alpha_1$ $\alpha_2$ $\alpha_3$ ", where each $\alpha$ corresponds to the first, second an third enzymatic activities. In the original article in the motif catalysed enzymatic activity 3, we used "0 0 1".
         - Please use maximum 3 long sequence definitions. In this case the following transformation will be applied to define activity $a(n)$ for motifs, where $n$ is the number of sequnce rules fulfilled: $a(0)=0.0$, $a(1)=0.1 \alpha$, $a(2)=0.8 \alpha$ and $a(3) = \alpha$.
 - Generate a pool of random replicators. By default the program generates 10 000 000 sequences in a length of $\lambda=45$ in a Poisson distribution. If you wish to change that please refer to *src/randseq.cpp*! To start generation type: `./randseq --par_str_pool IN/str/mappingA10.txt`. Please note, that this step will take a while!
 - Run the simulations. `./mcrs` and `./scm` starts the corresponding simulations. To set the parameters, please refer to **Model parameters** section!
