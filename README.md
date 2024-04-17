@@ -77,8 +77,8 @@ Parameters can be included in any order after the program name (e.g. `./mcrs --n
 | `--par_seed`            | Random seed. If -1 than the system will be the seed.                                                              |    -1                  |
 | `--par_output_interval` | Output interval.                                                                                                  | 1000                   |
 | `--par_save_interval`   | The interval when the full grid is saved.                                                                         | 1000000                |
-| `--par_ID`              | The ID of the simualtion. The forlder name where the results will be saved.                                       | "test\0"               |
-| `--par_str_pool`        | The mapping of enzymatic activities. It willset the system size too.                                              | "IN/str/mappingA3.txt" |
+| `--par_ID`              | The ID of the simualtion. The forlder name where the results will be saved.                                       |  test\0                |
+| `--par_str_pool`        | The mapping of enzymatic activities. It willset the system size too.                                              |  IN/str/mappingA3.txt  |
 | `--par_load`            | Loading simulation from a grid.                                                                                   |                        | 
 | `--par_diffusion_rate`  | Diffusion rate                                                                                                    | 4                      |
 | `--par_claimEmpty`      | Claim of empty place to remain empty                                                                              | 0.1                    |
@@ -112,10 +112,10 @@ Parameters can be included in any order after the program name (e.g. `./mcrs --n
 | `--par_seed`              | Random seed. If -1 than the system will be the seed.                           |    -1                  |
 | `--par_output_interval`   | Output interval.                                                               | 1000                   |
 | `--par_save_interval`     | The interval when the full grid is saved.                                      | 1000000                |
-| `--par_ID`                | The ID of the simualtion. The forlder name where the results will be saved.    | "test\0"               |
-| `--par_str_pool`          | The mapping of enzymatic activities. It willset the system size too.           | "IN/str/mappingA3.txt" |
+| `--par_ID`                | The ID of the simualtion. The forlder name where the results will be saved.    |  test                  |
+| `--par_str_pool`          | The mapping of enzymatic activities. It willset the system size too.           |  IN/str/mappingA3.txt  |
 | `--par_load`              | Loading simulation from a grid.                                                |                        | 
-| `--par_bubbles`           | Location (folder) of vesicles to initialise simulation from.                   | "\0"                   | 
+| `--par_bubbles`           | Location (folder) of vesicles to initialise simulation from.                   |                        | 
 | `--par_substitution`      | Per base probability of substituion mutations.                                 | 0.005                  |
 | `--par_insertion`         | Per base probability of insertion mutations.                                   | 0.0005                 |
 | `--par_deletion`          | Per base probability of deletion mutations.                                    | 0.0005                 |
